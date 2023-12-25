@@ -1,0 +1,44 @@
+.container {
+    width: 100%;
+    margin-top: 50px;
+    color: #242424;
+}
+
+.icon {
+    margin-top: -30px;
+    margin-left: -30px;
+    border-radius: 8px;
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+    background-color: cornflowerblue;
+}
+
+.content {
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    padding: 16px;
+    box-sizing: border-box;
+}
+
+.content:hover {
+    cursor: pointer;
+}
+
+.innerContent {
+    display: flex;
+    justify-content: space-between;
+}
+
+.divider {
+    margin-top: 12px !important;
+    margin-bottom: 12px !important;
+}
+
+.actions {
+    display: flex;
+    justify-content: start;
+}
