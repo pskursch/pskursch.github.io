@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react"
 import {getRows, Round, roundToIndexMap, setRoundForTeam, SuccessfulDart, Team} from "../data.ts";
-import {Button, Dialog, DialogActions, DialogContent, DialogTitle} from "@mui/material";
+import {Button, Dialog, DialogActions, DialogContent, DialogTitle, Typography} from "@mui/material";
 import styles from "./ScoreDialog.module.css";
 
 interface Props {
@@ -63,7 +63,11 @@ const NumberScoreDialog: React.FC<Props> = ({team, scoreLabel, open, closeDialog
     }
 
     const setRound = () => {
-        const round: Round = {label: scoreLabel, index: roundToIndexMap.get(scoreLabel)!, successfulDarts: successfulDarts};
+        const round: Round = {
+            label: scoreLabel,
+            index: roundToIndexMap.get(scoreLabel)!,
+            successfulDarts: successfulDarts
+        };
         setRoundForTeam(team, round);
     }
 
@@ -108,28 +112,63 @@ const NumberScoreDialog: React.FC<Props> = ({team, scoreLabel, open, closeDialog
             maxWidth={"sm"}
         >
             <DialogTitle>
-                Set score for {team.name} for {scoreLabel}
+                <div style={{width: "100%", display: "flex", flexDirection: "column", alignItems: "center"}}>
+                    <Typography variant="h5" gutterBottom>
+                        Round: {scoreLabel}
+                    </Typography>
+                    <Typography variant="h5" gutterBottom>
+                        Team: {team.name}
+                    </Typography>
+                </div>
             </DialogTitle>
             <DialogContent>
                 <div className={styles.content}>
                     <div>
-                        Total score for round: {getTotalScoreForRound()}
+                        <Typography variant="h3" style={{fontWeight: "bold"}}>{getTotalScoreForRound()}</Typography>
                     </div>
-                    {getButtons().map(button => {
-                        return (
-                            <div key={button.label} style={{
-                                display: "flex",
-                                alignItems: "center"
-                            }}>
-                                <Button onClick={() => addSuccessfulDart({score: button.value})}>
-                                    Add {button.label}
-                                </Button>
-                                <Button onClick={() => subtractSuccessfulDart({score: button.value})}>
-                                    Remove {button.label}
-                                </Button>
-                            </div>
-                        )
-                    })}
+                    <div style={{
+                        width: "100%"
+                    }}>
+                        {getButtons().map(button => {
+                            return (
+                                <div key={button.label} style={{
+                                    display: "flex",
+                                    alignItems: "center"
+                                }}>
+                                    <div style={{
+                                        padding: 12,
+                                        width: "50%"
+                                    }}>
+                                        <Button
+                                            style={{
+                                                backgroundColor: "green",
+                                                color: "white",
+                                                width: "100%"
+                                            }}
+                                            onClick={() => addSuccessfulDart({score: button.value})}
+                                        >
+                                            Add {button.label}
+                                        </Button>
+                                    </div>
+                                    <div style={{
+                                        padding: 12,
+                                        width: "50%"
+                                    }}>
+                                        <Button
+                                            style={{
+                                                backgroundColor: "red",
+                                                color: "white",
+                                                width: "100%"
+                                            }}
+                                            onClick={() => subtractSuccessfulDart({score: button.value})}
+                                        >
+                                            Remove {button.label}
+                                        </Button>
+                                    </div>
+                                </div>
+                            )
+                        })}
+                    </div>
                 </div>
             </DialogContent>
             <DialogActions>

@@ -1,11 +1,12 @@
 import React, {useState} from "react"
-import {getRoundScoreForTeam, Team, getRows, useGetScoreboard, useGetTeams} from "../data.ts";
+import {getRoundScoreForTeam, getRows, Team, useGetScoreboard, useGetTeams} from "../data.ts";
 import {useParams} from "@tanstack/react-router";
 import {scoreboardPageRoute} from "../router.tsx";
-import {Button, Table, TableBody, TableCell, TableHead, TableRow, Typography} from "@mui/material";
+import {IconButton, Table, TableBody, TableCell, TableHead, TableRow, Typography} from "@mui/material";
 import styles from "./ScoreboardPage.module.css"
 import CreateTeamDialog from "./CreateTeamDialog.tsx";
 import NumberScoreDialog from "./NumberScoreDialog.tsx";
+import {Add} from "@mui/icons-material";
 
 interface Props {
 
@@ -30,17 +31,23 @@ const ScoreboardPage: React.FC<Props> = () => {
                     <Typography variant="h6">
                         {scoreboard.name}
                     </Typography>
-                    <Button onClick={() => setCreateTeamDialogOpen(true)}>
-                        Add Team
-                    </Button>
+                    <IconButton
+                        size={"small"}
+                        onClick={() => setCreateTeamDialogOpen(true)}
+                    >
+                        <Add style={{
+                            color: "whitesmoke"
+                        }}/>
+                    </IconButton>
                 </div>
                 <Table sx={{minWidth: 300}} aria-label="simple table">
                     <TableHead>
                         <TableRow>
-                            <TableCell></TableCell>
+                            <TableCell className={styles.tableCell}></TableCell>
                             {teams.sort((a, b) => a.throwIndex - b.throwIndex).map(t => {
                                 return (
                                     <TableCell
+                                        className={styles.tableCell}
                                         key={t.id}
                                     >
                                         {t.name}
@@ -54,7 +61,10 @@ const ScoreboardPage: React.FC<Props> = () => {
                             <TableRow
                                 key={row.index}
                             >
-                                <TableCell component="th" scope="row">
+                                <TableCell className={styles.tableCell} style={{
+                                    borderRight: "1px solid rgba(224, 224, 224, 1)",
+                                    borderLeft: "1px solid rgba(224, 224, 224, 1)"
+                                }}>
                                     {row.label}
                                 </TableCell>
                                 {teams.sort((a, b) => a.throwIndex - b.throwIndex).map(t => {

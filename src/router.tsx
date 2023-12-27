@@ -32,7 +32,7 @@ export const routeTree = rootRoute.addChildren([
 
 export const router = new Router({
     routeTree,
-    basepath: "app"
+    // basepath: "app"
 });
 
 export default router;

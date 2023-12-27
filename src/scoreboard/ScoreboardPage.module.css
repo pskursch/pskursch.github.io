@@ -2,10 +2,10 @@
     display: flex;
     flex-direction: column;
     border-radius: 8px;
-    background-color: #f9f9f9;
+    background-color: black;
     padding: 16px;
     box-sizing: border-box;
-    color: #242424;
+    color: whitesmoke !important;
     align-items: start;
 }
 
@@ -16,9 +16,17 @@
     width: 100%;
 }
 
-.clickableCell {}
+.clickableCell {
+    color: whitesmoke !important;
+    border-right: 1px solid rgba(224, 224, 224, 1);
+    font-family: "Comic Sans MS" , serif !important;
+}
 
 .clickableCell:hover {
-    background-color: antiquewhite;
     cursor: pointer;
+}
+
+.tableCell {
+    color: whitesmoke !important;
+    font-family: "Comic Sans MS", monospace !important;
 }

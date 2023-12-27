@@ -32,11 +32,12 @@ roundToIndexMap.set("15", 0);
 roundToIndexMap.set("16", 1);
 roundToIndexMap.set("D", 2);
 roundToIndexMap.set("17", 3);
-roundToIndexMap.set("18", 4);
-roundToIndexMap.set("41", 5);
-roundToIndexMap.set("19", 6);
-roundToIndexMap.set("20", 7);
-roundToIndexMap.set("B", 8);
+roundToIndexMap.set("T", 4);
+roundToIndexMap.set("18", 5);
+roundToIndexMap.set("41", 6);
+roundToIndexMap.set("19", 7);
+roundToIndexMap.set("20", 8);
+roundToIndexMap.set("B", 9);
 
 export const useGetTeams = (scoreboard: Scoreboard): Array<Team> => {
     const teamsStr = localStorage.getItem("lumberjack.teams");
@@ -113,7 +114,7 @@ export const getRoundScoreForTeam = (team: Team, roundLabel: string) => {
                     score = score + successfulDart.score
                 })
             } else if (score > 0) {
-                score = Math.round(score / 2);
+                score = Math.floor(score / 2);
             }
         }
     })
