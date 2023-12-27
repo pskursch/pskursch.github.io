@@ -19,7 +19,7 @@
 .clickableCell {
     color: whitesmoke !important;
     border-right: 1px solid rgba(224, 224, 224, 1);
-    font-family: "Comic Sans MS" , serif !important;
+    font-family: "Comic Sans MS", monospace !important;
 }
 
 .clickableCell:hover {
